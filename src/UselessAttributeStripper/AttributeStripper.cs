@@ -23,7 +23,7 @@ namespace UselessAttributeStripper
             _stripTotalCountMap = new Dictionary<string, int>();
         }
 
-        public void ProcessDll(string dllPath)
+		public void ProcessDll(string dllPath)
         {
             _stripCountMap.Clear();
 

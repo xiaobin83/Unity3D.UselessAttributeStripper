@@ -6,11 +6,22 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
+using UnusedBytecodeStripper2.Chain;
 
 namespace UselessAttributeStripper
 {
-    internal class Program
-    {
+	[DllProcessor(Priority = int.MaxValue)]
+	public class StripAttributes : IProcessDll
+	{
+		public void ProcessDll(string[] args)
+		{
+			Program.ProcessDll(args);
+		}
+	}
+
+
+	internal class Program
+	{
         private static int Main(string[] args)
         {
             if (args.Length == 0)
@@ -39,7 +50,15 @@ namespace UselessAttributeStripper
             return 0;
         }
 
-        private static void ShowUsage()
+		internal static void ProcessDll(string[] args)
+		{
+			List<string> attributeNames;
+			List<string> dllFileNames;
+			LoadConfiguration(args, out attributeNames, out dllFileNames);
+			ProcessStrip(attributeNames, dllFileNames);
+		}
+
+		private static void ShowUsage()
         {
             Console.WriteLine("Useless Attribute Stripper for Unity3D IL2CPP");
             Console.WriteLine("https://github.com/SaladLab/Unity3D.UselessAttributeStripper");
