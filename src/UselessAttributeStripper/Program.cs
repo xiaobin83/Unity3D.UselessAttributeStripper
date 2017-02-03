@@ -184,7 +184,7 @@ namespace UselessAttributeStripper
                     var currentModulePath = Assembly.GetExecutingAssembly().Location;
                     var orgModulePath = currentModulePath.Substring(0, currentModulePath.Length - 3) + "org.exe";
 
-                    var orgArgs = string.Join(" ", args.Select(a => '"' + a + '"'));
+                    var orgArgs = string.Join(" ", args.Select(a => '"' + a + '"').ToArray());
                     Log(string.Format("Spawn: Exec={0}", orgModulePath));
                     Log(string.Format("       Args={0}", orgArgs));
                     var handle = Process.Start(orgModulePath, orgArgs);
@@ -201,7 +201,7 @@ namespace UselessAttributeStripper
                     var currentModulePath = Assembly.GetExecutingAssembly().Location;
                     var orgModulePath = currentModulePath.Substring(0, currentModulePath.Length - 3) + "org.exe";
 
-                    var orgArgs = '"' + orgModulePath + '"' + ' ' + string.Join(" ", args.Select(a => '"' + a + '"'));
+                    var orgArgs = '"' + orgModulePath + '"' + ' ' + string.Join(" ", args.Select(a => '"' + a + '"').ToArray());
                     Log(string.Format("Spawn: Mono={0}", monoPath));
                     Log(string.Format("       Exec={0}", orgModulePath));
                     Log(string.Format("       Args={0}", orgArgs));

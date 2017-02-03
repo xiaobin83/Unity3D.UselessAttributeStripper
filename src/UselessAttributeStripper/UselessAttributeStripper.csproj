@@ -27,6 +27,8 @@
   <PropertyGroup>
     <StartupObject />
     <ProjectGuid>{2A067BAE-8AE3-4D28-B3D8-F88075E06549}</ProjectGuid>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
     <OutputType>Library</OutputType>
